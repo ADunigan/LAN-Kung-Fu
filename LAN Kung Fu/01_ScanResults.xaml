@@ -1,0 +1,39 @@
+﻿<Window x:Class="LAN_Kung_Fu.ScanResults"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LAN_Kung_Fu"
+        mc:Ignorable="d"
+        Title="Network Scan Results" Height="600" SizeToContent="Width" Loaded="Loaded_Scan_Results" ResizeMode="CanMinimize">
+    <Grid Width="Auto" HorizontalAlignment="Left">
+        <Button x:Name="btn_RefreshScan" ToolTip="Refresh Scan" HorizontalAlignment="Right" Margin="0,10,9.6,0" VerticalAlignment="Top" Click="Click_btn_RefreshScan" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="24" Height="24">
+            <Image Source="/Resources/Icons/Refresh_24x.png" Width="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+        </Button>
+        <TabControl x:Name="tab_ScanResults" Margin="0,39,0,0" Width="Auto" HorizontalAlignment="Left">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock Text="{Binding TabHeader}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ScrollViewer>
+                        <ListView>
+                            <ListView x:Name="Scans" ItemsSource="{Binding ARPResults}" Height="Auto">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="IP Address:" DisplayMemberBinding="{Binding IPAddress}"/>
+                                        <GridViewColumn Header="MAC Address:" DisplayMemberBinding="{Binding MacAddress}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ListView>
+                    </ScrollViewer>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</Window>
